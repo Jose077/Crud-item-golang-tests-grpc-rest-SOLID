@@ -36,8 +36,8 @@ func (item *Items) GetItems(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(*items) <= 0 {
-		w.WriteHeader(204)
-		w.Write([]byte("Nenhum item encontrado!"))
+		w.WriteHeader(200)
+		w.Write([]byte(`{"msg": "Nenhum item encontrado!"}`))
 		return
 	}
 

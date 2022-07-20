@@ -37,10 +37,10 @@ func TestPostItem(t *testing.T) {
 
 	itemsValue := *item
 
-	assert.NotZero(t, itemsValue[0].ID)
-	assert.Equal(t, itemsValue[0].Descricao, postMock.Descricao)
-	assert.Equal(t, itemsValue[0].Sn, postMock.Sn)
-	assert.Equal(t, itemsValue[0].Mac, postMock.Mac)
-	assert.Equal(t, itemsValue[0].Imei, postMock.Imei)
+	assert.NotZero(t, itemsValue.ID)
+	assert.Equal(t, itemsValue.Descricao, postMock.Descricao)
+	assert.Equal(t, itemsValue.Sn, postMock.Sn)
+	assert.Equal(t, itemsValue.Mac, postMock.Mac)
+	assert.Equal(t, itemsValue.Imei, postMock.Imei)
 
 }

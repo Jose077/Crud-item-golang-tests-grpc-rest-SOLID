@@ -44,15 +44,15 @@ func (it *ItemRepository) GetItems() (*[]entity.Item, error) {
 }
 
 // PostItem implements repository.IItemRepository
-func (it *ItemRepository) PostItems(item entity.Item) (*entity.Items, error) {
-	var items []entity.Item
+func (it *ItemRepository) PostItems(item entity.Item) (*entity.Item, error) {
+	var itemDb entity.Item
 
-	err := it.db.Raw("INSERT INTO item (id, descricao, sn, mac, imei) VALUES(?,?,?,?,?)", item.ID, item.Descricao, item.Sn, item.Mac, item.Imei).Scan(&items).Error
+	err := it.db.Raw("INSERT INTO item (id, descricao, sn, mac, imei) VALUES(?,?,?,?,?)", item.ID, item.Descricao, item.Sn, item.Mac, item.Imei).Scan(&itemDb).Error
 
 	if err != nil {
 		return nil, err
 	}
 
-	return &items, nil
+	return &itemDb, nil
 
 }

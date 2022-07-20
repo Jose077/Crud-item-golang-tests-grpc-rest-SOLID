@@ -6,5 +6,5 @@ import (
 
 type IItemRepository interface {
 	GetItems() (*[]entity.Item, error)
-	PostItems(item entity.Item) (*entity.Items, error)
+	PostItems(item entity.Item) (*entity.Item, error)
 }

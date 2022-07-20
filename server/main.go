@@ -1,31 +1,41 @@
 package main
 
+import (
+	"crudItem/shared/config"
+	"crudItem/shared/db"
+	"crudItem/shared/logger"
+	"crudItem/shared/servers/grpc_server"
+	"crudItem/shared/servers/rest_server"
+
+	"go.uber.org/fx"
+)
+
 func main() {
 
 	// inicia todas as dependencias
-	// app := fx.New(
-	// 	fx.Provide(
+	app := fx.New(
+		fx.Provide(
 
-	// 		// log
-	// 		logger.Init,
+			// log
+			logger.Init,
 
-	// 		// Rest
-	// 		config.GetParamsDb,
-	// 		db.NewRepository,
-	// 		rest_server.NewChi,
+			// Rest
+			config.GetParamsDb,
+			db.NewRepository,
+			rest_server.NewChi,
 
-	// 		// grpc
-	// 		grpc_server.InitGRPCserver,
-	// 	),
+			// grpc
+			grpc_server.InitGRPCserver,
+		),
 
-	// 	fx.Invoke(
-	// 		rest_server.RegisterRoutes,
-	// 		grpc_server.RunGRPCServer,
-	// 		grpc_server.RegisterGrpcModules,
-	// 	),
-	// )
+		fx.Invoke(
+			rest_server.RegisterRoutes,
+			grpc_server.RunGRPCServer,
+			grpc_server.RegisterGrpcModules,
+		),
+	)
 
-	// // inicia aplicação
-	// app.Run()
+	// inicia aplicação
+	app.Run()
 
 }
