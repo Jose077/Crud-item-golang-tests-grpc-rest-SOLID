@@ -14,6 +14,9 @@ func RegisterRoutes(r *chi.Mux, handle *db.IRepositories) {
 	// Instancias dos handlers das rotas
 	items := handle_rest_item.NewItemHandler(handle.Item)
 
+	// midleware de autenticacao
+	// r.Use(app.MiddlewareAuth)
+
 	//Items
 	r.Get("/items", items.GetItems)
 	r.Post("/items", items.PostItems)

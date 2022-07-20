@@ -18,7 +18,7 @@ func NewPostItemUseCase(repo repository.IItemRepository) *PostItemUseCase {
 }
 
 // var _ repository.IItemRepository = &PostItemUseCase{}
-func (it *PostItemUseCase) PostItems(item entity.Item) (*entity.Items, error) {
+func (it *PostItemUseCase) PostItems(item entity.Item) (*entity.Item, error) {
 
 	item.ID = uuid.Must(uuid.NewRandom())
 

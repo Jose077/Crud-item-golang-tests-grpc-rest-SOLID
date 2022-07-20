@@ -18,10 +18,10 @@ var ItemsDb []entity.Item
 var _ IItemRepository = &ItemRepositoryFake{}
 
 // PostItems implements IItemRepository
-func (*ItemRepositoryFake) PostItems(item entity.Item) (*[]entity.Item, error) {
-	ItemsDb = []entity.Item{item}
+func (*ItemRepositoryFake) PostItems(item entity.Item) (*entity.Item, error) {
+	ItemsDb = append(ItemsDb, item)
 
-	return &ItemsDb, nil
+	return &item, nil
 }
 
 // GetItems implements IItemRepository
