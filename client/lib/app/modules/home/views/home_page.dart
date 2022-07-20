@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           ),
           ElevatedButton(
               onPressed: (() {
-                Modular.to.navigate('/examples/');
+                Modular.to.navigate('/items/');
               }),
               child: const Text("Entrar")),
         ],
