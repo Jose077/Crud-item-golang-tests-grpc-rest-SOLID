@@ -35,8 +35,14 @@ class _ItemsPageState extends State<ItemsPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                        // Image.asset('../images/logo.png',
-                        //     width: 30, height: 25),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.playlist_add_check_circle_outlined,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                        ),
                         Text(
                           'SisItens',
                           style: TextStyle(
@@ -65,7 +71,7 @@ class _ItemsPageState extends State<ItemsPage> {
                     iconColor: Colors.white,
                     textColor: Colors.white,
                     leading: const Icon(Icons.featured_play_list_outlined),
-                    title: Text('Itens'),
+                    title: const Text('Itens'),
                     onTap: () {
                       Modular.to.navigate('./');
                     },
@@ -73,8 +79,8 @@ class _ItemsPageState extends State<ItemsPage> {
                   ListTile(
                     iconColor: Colors.white,
                     textColor: Colors.white,
-                    leading: Icon(Icons.warning_amber),
-                    title: Text('Sobre'),
+                    leading: const Icon(Icons.info_outline),
+                    title: const Text('Sobre'),
                     onTap: () {
                       Modular.to.navigate('./sobre');
                     },

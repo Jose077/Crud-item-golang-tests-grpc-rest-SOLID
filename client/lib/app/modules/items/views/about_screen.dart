@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
-
-import '../controllers/users_store.dart';
-import '../models/users_model.dart';
 import 'widgets/left_description.dart';
 
-class ItemsScreen extends StatefulWidget {
-  const ItemsScreen({Key? key}) : super(key: key);
+class AboutScreen extends StatefulWidget {
+  const AboutScreen({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return ItemsScreenData();
+    return AboutScreenData();
   }
 }
 
-class ItemsScreenData extends State<ItemsScreen> {
-  UserStore store = UserStore();
-
-  @override
-  void initState() {
-    super.initState();
-    store.fetchUsersDataDio();
-  }
-
+class AboutScreenData extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
