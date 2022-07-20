@@ -13,7 +13,7 @@ class LeftDescription extends StatelessWidget {
         // title
         const FittedBox(
           child: Text(
-            'SistItens.',
+            'SisItens.',
             style: TextStyle(
               fontFamily: 'Poppins',
               color: Color(0xff28313b),
