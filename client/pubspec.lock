@@ -36,6 +36,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  bs_flutter_buttons:
+    dependency: "direct main"
+    description:
+      name: bs_flutter_buttons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.8"
+  bs_flutter_card:
+    dependency: "direct main"
+    description:
+      name: bs_flutter_card
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  bs_flutter_datatable:
+    dependency: "direct main"
+    description:
+      name: bs_flutter_datatable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.5"
+  bs_flutter_utils:
+    dependency: transitive
+    description:
+      name: bs_flutter_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   build:
     dependency: transitive
     description:
@@ -225,6 +253,11 @@ packages:
     version: "0.0.2"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -550,4 +583,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.17.3 <3.0.0"
-  flutter: ">=1.16.0"
+  flutter: ">=1.20.0"

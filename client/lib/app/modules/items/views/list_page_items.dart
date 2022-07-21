@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutterboilerplatemodularmobx/app/modules/items/views/widgets/table_items.dart';
 
 class ItemsPage extends StatefulWidget {
   const ItemsPage({Key? key}) : super(key: key);
@@ -73,7 +74,7 @@ class _ItemsPageState extends State<ItemsPage> {
                     leading: const Icon(Icons.featured_play_list_outlined),
                     title: const Text('Itens'),
                     onTap: () {
-                      Modular.to.navigate('./');
+                      Modular.to.navigate('./list');
                     },
                   ),
                   ListTile(
