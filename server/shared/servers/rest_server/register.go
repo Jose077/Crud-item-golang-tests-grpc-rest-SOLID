@@ -20,5 +20,6 @@ func RegisterRoutes(r *chi.Mux, handle *db.IRepositories) {
 	//Items
 	r.Get("/items", items.GetItems)
 	r.Post("/items", items.PostItems)
+	r.Delete("/items/{id}", items.DeleteItems)
 
 }

@@ -12,35 +12,35 @@ import (
 
 func TestPostItem(t *testing.T) {
 
-	mac, err := test_item.GenerateMac()
-	if err != nil {
-		t.Error("erro ao gerar mac: ", err)
-	}
+	t.Run("Deve ser capaz de cadastrar um item", func(t *testing.T) {
 
-	// repositorio com mock do testfy
-	// repo := new(repository.ItemRepositoryMock)
-	// repo.Mock.On("PostItems").Return(&[]entity.Item{postMock}, nil)
+		mac, err := test_item.GenerateMac()
+		if err != nil {
+			t.Error("erro ao gerar mac: ", err)
+		}
 
-	repo := repository.NewItemRepositoryFake() // new(repository.ItemRepositoryFake)
-	postMock := entity.Item{
-		Descricao: "item descricao",
-		Sn:        "32132131231",
-		Mac:       mac,
-		Imei:      "eqe23e32e32e32",
-	}
-	postItemUseCase := NewPostItemUseCase(repo)
+		repo := repository.NewItemRepositoryFake()
+		postMock := entity.Item{
+			Descricao: "item descricao",
+			Sn:        "32132131231",
+			Mac:       mac,
+			Imei:      "eqe23e32e32e32",
+		}
+		postItemUseCase := NewPostItemUseCase(repo)
 
-	item, err := postItemUseCase.PostItems(postMock)
-	if err != nil {
-		t.Error("Failed to create item: ", err)
-	}
+		item, err := postItemUseCase.PostItems(postMock)
+		if err != nil {
+			t.Error("Failed to create item: ", err)
+		}
 
-	itemsValue := *item
+		itemsValue := *item
 
-	assert.NotZero(t, itemsValue.ID)
-	assert.Equal(t, itemsValue.Descricao, postMock.Descricao)
-	assert.Equal(t, itemsValue.Sn, postMock.Sn)
-	assert.Equal(t, itemsValue.Mac, postMock.Mac)
-	assert.Equal(t, itemsValue.Imei, postMock.Imei)
+		assert.NotZero(t, itemsValue.ID)
+		assert.Equal(t, itemsValue.Descricao, postMock.Descricao)
+		assert.Equal(t, itemsValue.Sn, postMock.Sn)
+		assert.Equal(t, itemsValue.Mac, postMock.Mac)
+		assert.Equal(t, itemsValue.Imei, postMock.Imei)
+
+	})
 
 }

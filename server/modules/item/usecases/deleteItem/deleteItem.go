@@ -16,6 +16,7 @@ func NewDeleteItemUseCase(repo repository.IItemRepository) *DeleteItemUseCase {
 
 func (it *DeleteItemUseCase) DeleteItems(id string) (bool, error) {
 	result, err := it.repository.DelteItem(id)
+
 	if err != nil {
 		return false, err
 	}

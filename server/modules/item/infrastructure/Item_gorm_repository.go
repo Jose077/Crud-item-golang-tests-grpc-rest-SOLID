@@ -54,10 +54,18 @@ func (it *ItemRepository) PostItems(item entity.Item) (*entity.Item, error) {
 	}
 
 	return &itemDb, nil
-
 }
 
 // DelteItem implements repository.IItemRepository
-func (*ItemRepository) DelteItem(id string) (bool, error) {
-	panic("unimplemented")
+func (it *ItemRepository) DelteItem(id string) (bool, error) {
+
+	var item entity.Item
+
+	err := it.db.Raw("DELETE FROM item WHERE id = ?", id).Scan(item).Error
+
+	if err != nil {
+		return false, nil
+	} else {
+		return true, err
+	}
 }

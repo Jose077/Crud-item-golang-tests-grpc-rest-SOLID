@@ -122,3 +122,23 @@ func (s *Item_test_factory) DeleteItem(item_id string) (bool, error) {
 
 	return true, nil
 }
+
+func (s *Item_test_factory) ClearDb() (bool, error) {
+	db, err := conectDB()
+	if err != nil {
+		return false, err
+	}
+
+	errDelete := db.QueryRow(`
+	 	DELETE FROM item`,
+	).Scan()
+
+	if err != nil {
+		return false, errDelete
+
+	}
+
+	defer db.Close()
+
+	return true, nil
+}

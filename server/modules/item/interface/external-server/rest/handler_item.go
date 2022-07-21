@@ -4,9 +4,13 @@ import (
 	"crudItem/modules/item/domain/entity"
 	"crudItem/modules/item/domain/repository"
 	"crudItem/modules/item/usecases"
+	deleteItemUsecases "crudItem/modules/item/usecases/deleteItem"
 	postItemUsecases "crudItem/modules/item/usecases/postItem"
+
 	"encoding/json"
 	"net/http"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type Items struct {
@@ -24,10 +28,6 @@ func NewItemHandler(it repository.IItemRepository) *Items {
 func (item *Items) GetItems(w http.ResponseWriter, r *http.Request) {
 
 	getItemUseCase := usecases.NewGetItemUseCase(item.it)
-
-	// user := r.Context().Value("user").(string)
-
-	// log.Println(user)
 
 	items, err := getItemUseCase.GetItems()
 	if err != nil {
@@ -69,4 +69,29 @@ func (item *Items) PostItems(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 
 	json.NewEncoder(w).Encode(Items)
+}
+
+func (item *Items) DeleteItems(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+
+	deleteItemUseCase := deleteItemUsecases.NewDeleteItemUseCase(item.it)
+
+	result, err := deleteItemUseCase.DeleteItems(id)
+	if err != nil {
+		w.Write([]byte(err.Error()))
+		return
+	}
+
+	if result {
+		w.WriteHeader(200)
+		w.Write([]byte(`{"msg": "item deletaddo com sucesso!"}`))
+		return
+
+	} else {
+
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte(`{"msg": "Nenhum item encontrado!"}`))
+		return
+	}
+
 }

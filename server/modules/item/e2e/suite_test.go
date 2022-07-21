@@ -28,6 +28,11 @@ func (suite *Suite) SetupTest() {
 	if err != nil {
 		suite.T().Error("failed to initialize log : ", err)
 	}
+
+	// clear db
+	// factory := NewItemTestFfactory()
+	// factory.ClearDb()
+
 	// Create server
 	suite.server = chi.NewRouter()
 
@@ -42,6 +47,8 @@ func (suite *Suite) SetupTest() {
 	items := rest.NewItemHandler(repo.Item)
 	suite.server.Get("/items", items.GetItems)
 	suite.server.Post("/items", items.PostItems)
+	suite.server.Delete("/items/{id}", items.DeleteItems)
+
 }
 
 // UTILS--------

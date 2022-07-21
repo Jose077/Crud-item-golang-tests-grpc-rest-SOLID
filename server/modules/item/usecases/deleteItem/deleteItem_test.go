@@ -6,7 +6,6 @@ import (
 	test_item "crudItem/modules/item/e2e"
 	postItem "crudItem/modules/item/usecases/postItem"
 	"fmt"
-	"log"
 
 	"testing"
 
@@ -14,54 +13,99 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestDeleteItemPositive(t *testing.T) {
+// func TestDeleteItemPositive(t *testing.T) {
 
-	mac, err := test_item.GenerateMac()
-	if err != nil {
-		t.Error("erro ao gerar mac: ", err)
-	}
+// 	mac, err := test_item.GenerateMac()
+// 	if err != nil {
+// 		t.Error("erro ao gerar mac: ", err)
+// 	}
 
-	repo := repository.NewItemRepositoryFake()
+// 	repo := repository.NewItemRepositoryFake()
 
-	// Criar item
-	ItemMock := entity.Item{
-		Descricao: "item descricao",
-		Sn:        "32132131231",
-		Mac:       mac,
-		Imei:      "eqe23e32e32e32",
-	}
+// 	// Criar item
+// 	ItemMock := entity.Item{
+// 		Descricao: "item descricao",
+// 		Sn:        "32132131231",
+// 		Mac:       mac,
+// 		Imei:      "eqe23e32e32e32",
+// 	}
 
-	postitemUseCase := postItem.NewPostItemUseCase(repo)
-	item, err := postitemUseCase.PostItems(ItemMock)
-	if err != nil {
-		t.Error("Failed to create item: ", err)
-	}
+// 	postitemUseCase := postItem.NewPostItemUseCase(repo)
+// 	item, err := postitemUseCase.PostItems(ItemMock)
+// 	if err != nil {
+// 		t.Error("Failed to create item: ", err)
+// 	}
 
-	deleteItemUseCase := NewDeleteItemUseCase(repo)
+// 	deleteItemUseCase := NewDeleteItemUseCase(repo)
 
-	result, err := deleteItemUseCase.DeleteItems(fmt.Sprint(item.ID))
-	if err != nil {
-		t.Error("Failed to delete item: ", err)
-	}
+// 	result, err := deleteItemUseCase.DeleteItems(fmt.Sprint(item.ID))
+// 	if err != nil {
+// 		t.Error("Failed to delete item: ", err)
+// 	}
 
-	assert.Equal(t, result, true)
+// 	assert.Equal(t, result, true)
+// }
 
-}
+// func TestDeleteItemNegative(t *testing.T) {
 
-func TestDeleteItemNegative(t *testing.T) {
+// 	repo := repository.NewItemRepositoryFake()
 
-	repo := repository.NewItemRepositoryFake()
+// 	id := uuid.New().String()
+// 	deleteItemUseCase := NewDeleteItemUseCase(repo)
 
-	id := uuid.New().String()
-	deleteItemUseCase := NewDeleteItemUseCase(repo)
+// 	result, err := deleteItemUseCase.DeleteItems(id)
+// 	if err != nil {
+// 		t.Error("Failed to delete item: ", err)
+// 	}
 
-	log.Println("id: ", id)
+// 	assert.Equal(t, result, false)
+// }
 
-	result, err := deleteItemUseCase.DeleteItems(id)
-	if err != nil {
-		t.Error("Failed to delete item: ", err)
-	}
+func TestUnidadeItem(t *testing.T) {
 
-	assert.Equal(t, result, false)
+	t.Run("Deve ser capaz de deletar um item", func(t *testing.T) {
+		mac, err := test_item.GenerateMac()
+		if err != nil {
+			t.Error("erro ao gerar mac: ", err)
+		}
 
+		repo := repository.NewItemRepositoryFake()
+
+		// Criar item
+		ItemMock := entity.Item{
+			Descricao: "item descricao",
+			Sn:        "32132131231",
+			Mac:       mac,
+			Imei:      "eqe23e32e32e32",
+		}
+
+		postitemUseCase := postItem.NewPostItemUseCase(repo)
+		item, err := postitemUseCase.PostItems(ItemMock)
+		if err != nil {
+			t.Error("Failed to create item: ", err)
+		}
+
+		deleteItemUseCase := NewDeleteItemUseCase(repo)
+
+		result, err := deleteItemUseCase.DeleteItems(fmt.Sprint(item.ID))
+		if err != nil {
+			t.Error("Failed to delete item: ", err)
+		}
+
+		assert.Equal(t, result, true)
+	})
+
+	t.Run("Deve ser de retornar error caso o item não exista", func(t *testing.T) {
+		repo := repository.NewItemRepositoryFake()
+
+		id := uuid.New().String()
+		deleteItemUseCase := NewDeleteItemUseCase(repo)
+
+		result, err := deleteItemUseCase.DeleteItems(id)
+		if err != nil {
+			t.Error("Failed to delete item: ", err)
+		}
+
+		assert.Equal(t, false, result)
+	})
 }
