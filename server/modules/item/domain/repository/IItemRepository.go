@@ -7,4 +7,5 @@ import (
 type IItemRepository interface {
 	GetItems() (*[]entity.Item, error)
 	PostItems(item entity.Item) (*entity.Item, error)
+	DelteItem(id string) (bool, error)
 }

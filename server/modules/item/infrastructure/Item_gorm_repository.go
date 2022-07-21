@@ -56,3 +56,8 @@ func (it *ItemRepository) PostItems(item entity.Item) (*entity.Item, error) {
 	return &itemDb, nil
 
 }
+
+// DelteItem implements repository.IItemRepository
+func (*ItemRepository) DelteItem(id string) (bool, error) {
+	panic("unimplemented")
+}

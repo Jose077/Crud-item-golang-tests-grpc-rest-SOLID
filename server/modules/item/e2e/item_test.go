@@ -20,8 +20,8 @@ func (suite *Suite) TestGetItemsNegative() {
 	// Execute Request
 	response := suite.executeRequest(req, suite.server)
 
-	assert.Equal(suite.T(), response.Body.String(), "Nenhum item encontrado!")
-	assert.Equal(suite.T(), response.Code, 204)
+	assert.Equal(suite.T(), response.Code, 200)
+	assert.Equal(suite.T(), response.Body.String(), `{"msg": "Nenhum item encontrado!"}`)
 }
 
 // positive
