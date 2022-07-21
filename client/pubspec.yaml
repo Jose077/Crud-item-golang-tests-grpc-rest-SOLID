@@ -22,6 +22,10 @@ dependencies:
   http: ^0.13.4
   provider: ^6.0.3
   json_annotation: ^4.6.0
+  bs_flutter_datatable: ^1.2.5
+  bs_flutter_card: ^1.0.0
+  bs_flutter_buttons: ^1.2.8
+
 
 
 
@@ -46,9 +50,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/vrilustration.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
